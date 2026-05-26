@@ -12,9 +12,15 @@ import { AdminDashboard } from './pages/AdminDashboard'
 import { AboutPage } from './pages/AboutPage'
 import { TrackOrderPage } from './pages/TrackOrderPage'
 
+const previewThemes = new Set(['emerald-noir', 'burgundy-gold', 'midnight-teal', 'ivory-luxury', 'royal-blue'])
+
 function App() {
+  const location = useLocation()
+  const theme = new URLSearchParams(location.search).get('theme')
+  const themeClass = theme && previewThemes.has(theme) ? `theme-${theme}` : 'theme-royal-blue'
+
   return (
-    <div className="min-h-screen bg-cask text-white">
+    <div className={`min-h-screen bg-cask text-white ${themeClass}`}>
       <AgeGate />
       <Navbar />
       <CartDrawer />

@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cask: #0d0a06;
-  --color-gold: #c9a84c;
-  --color-gold-light: #e8c97a;
-  --color-gold-dark: #8b6914;
-  --color-crimson: #8b1a1a;
+  --color-cask: #07101f;
+  --color-gold: #f0c56b;
+  --color-gold-light: #ffe19a;
+  --color-gold-dark: #b88422;
+  --color-crimson: #2563eb;
   --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
 }
@@ -16,7 +16,7 @@
 }
 
 html {
-  background: #0d0a06;
+  background: #07101f;
   color-scheme: dark;
   scroll-behavior: smooth;
 }
@@ -25,9 +25,9 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 20% 10%, rgba(201, 168, 76, 0.1), transparent 28rem),
-    radial-gradient(circle at 80% 0%, rgba(139, 26, 26, 0.18), transparent 24rem),
-    #0d0a06;
+    radial-gradient(circle at 18% 8%, rgba(240, 197, 107, 0.13), transparent 28rem),
+    radial-gradient(circle at 82% 0, rgba(37, 99, 235, 0.28), transparent 25rem),
+    #07101f;
   color: #fff;
   font-family: "Inter", system-ui, sans-serif;
   font-size: 16px;
@@ -52,7 +52,7 @@ img {
 }
 
 ::selection {
-  background: rgba(201, 168, 76, 0.35);
+  background: rgba(240, 197, 107, 0.35);
 }
 
 .nav-solid {
@@ -211,6 +211,134 @@ img {
     linear-gradient(180deg, transparent 58%, #0d0a06 100%),
     linear-gradient(90deg, rgba(201, 168, 76, 0.12), transparent 24%, transparent 78%, rgba(139, 26, 26, 0.16));
   content: "";
+}
+
+.theme-emerald-noir {
+  --color-cask: #061211;
+  --color-gold: #d8b967;
+  --color-gold-light: #f1d98a;
+  --color-crimson: #0f766e;
+  background: radial-gradient(circle at 22% 8%, rgba(216, 185, 103, 0.16), transparent 28rem), radial-gradient(circle at 82% 0, rgba(15, 118, 110, 0.28), transparent 26rem), #061211;
+}
+
+.theme-emerald-noir .hero-section {
+  background-image: linear-gradient(90deg, rgba(6, 18, 17, 0.97), rgba(6, 18, 17, 0.68), rgba(6, 18, 17, 0.34)), url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=80") !important;
+}
+
+.theme-emerald-noir .category-card,
+.theme-emerald-noir .product-card,
+.theme-emerald-noir .lux-panel,
+.theme-emerald-noir .catalog-row,
+.theme-emerald-noir .home-shelf-group {
+  border-color: rgba(216, 185, 103, 0.22);
+  background: rgba(10, 32, 29, 0.84);
+}
+
+.theme-burgundy-gold {
+  --color-cask: #130509;
+  --color-gold: #e7be5a;
+  --color-gold-light: #ffd987;
+  --color-crimson: #9f1239;
+  background: radial-gradient(circle at 18% 8%, rgba(231, 190, 90, 0.15), transparent 28rem), radial-gradient(circle at 82% 0, rgba(159, 18, 57, 0.34), transparent 25rem), #130509;
+}
+
+.theme-burgundy-gold .hero-section {
+  background-image: linear-gradient(90deg, rgba(19, 5, 9, 0.97), rgba(19, 5, 9, 0.64), rgba(19, 5, 9, 0.32)), url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=80") !important;
+}
+
+.theme-burgundy-gold .category-card,
+.theme-burgundy-gold .product-card,
+.theme-burgundy-gold .lux-panel,
+.theme-burgundy-gold .catalog-row,
+.theme-burgundy-gold .home-shelf-group {
+  border-color: rgba(255, 217, 135, 0.24);
+  background: rgba(42, 10, 18, 0.82);
+}
+
+.theme-midnight-teal {
+  --color-cask: #070b16;
+  --color-gold: #69e0d1;
+  --color-gold-light: #a7fff3;
+  --color-crimson: #3154d4;
+  background: radial-gradient(circle at 18% 8%, rgba(105, 224, 209, 0.13), transparent 28rem), radial-gradient(circle at 82% 0, rgba(49, 84, 212, 0.26), transparent 25rem), #070b16;
+}
+
+.theme-midnight-teal .hero-section {
+  background-image: linear-gradient(90deg, rgba(7, 11, 22, 0.97), rgba(7, 11, 22, 0.66), rgba(7, 11, 22, 0.34)), url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=80") !important;
+}
+
+.theme-midnight-teal .category-card,
+.theme-midnight-teal .product-card,
+.theme-midnight-teal .lux-panel,
+.theme-midnight-teal .catalog-row,
+.theme-midnight-teal .home-shelf-group {
+  border-color: rgba(105, 224, 209, 0.22);
+  background: rgba(12, 23, 43, 0.86);
+}
+
+.theme-ivory-luxury {
+  --color-cask: #f4efe4;
+  --color-gold: #8a6832;
+  --color-gold-light: #b38a45;
+  --color-crimson: #7f1d1d;
+  background: radial-gradient(circle at 18% 8%, rgba(138, 104, 50, 0.16), transparent 28rem), radial-gradient(circle at 82% 0, rgba(127, 29, 29, 0.16), transparent 25rem), #f4efe4;
+  color: #1b1410;
+}
+
+.theme-ivory-luxury .hero-section {
+  background-image: linear-gradient(90deg, rgba(244, 239, 228, 0.94), rgba(244, 239, 228, 0.78), rgba(244, 239, 228, 0.4)), url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=80") !important;
+}
+
+.theme-ivory-luxury .category-card,
+.theme-ivory-luxury .product-card,
+.theme-ivory-luxury .lux-panel,
+.theme-ivory-luxury .catalog-row,
+.theme-ivory-luxury .home-shelf-group {
+  border-color: rgba(138, 104, 50, 0.24);
+  background: rgba(255, 252, 244, 0.88);
+  color: #1b1410;
+}
+
+.theme-ivory-luxury .text-white,
+.theme-ivory-luxury .text-white\/60,
+.theme-ivory-luxury .text-white\/55,
+.theme-ivory-luxury .text-white\/45,
+.theme-ivory-luxury .text-white\/40,
+.theme-ivory-luxury .text-white\/35,
+.theme-ivory-luxury h1,
+.theme-ivory-luxury h2,
+.theme-ivory-luxury h3 {
+  color: #1b1410;
+}
+
+.theme-royal-blue {
+  --color-cask: #07101f;
+  --color-gold: #f0c56b;
+  --color-gold-light: #ffe19a;
+  --color-crimson: #2563eb;
+  background: radial-gradient(circle at 18% 8%, rgba(240, 197, 107, 0.13), transparent 28rem), radial-gradient(circle at 82% 0, rgba(37, 99, 235, 0.28), transparent 25rem), #07101f;
+}
+
+.theme-royal-blue .hero-section {
+  background-image: linear-gradient(90deg, rgba(7, 16, 31, 0.97), rgba(7, 16, 31, 0.67), rgba(7, 16, 31, 0.34)), url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=80") !important;
+}
+
+.theme-royal-blue .category-card,
+.theme-royal-blue .product-card,
+.theme-royal-blue .lux-panel,
+.theme-royal-blue .catalog-row,
+.theme-royal-blue .home-shelf-group {
+  border-color: rgba(240, 197, 107, 0.22);
+  background: rgba(12, 29, 58, 0.86);
+}
+
+.theme-emerald-noir .btn-primary,
+.theme-burgundy-gold .btn-primary,
+.theme-midnight-teal .btn-primary,
+.theme-ivory-luxury .btn-primary,
+.theme-royal-blue .btn-primary {
+  border-color: color-mix(in srgb, var(--color-gold-light), transparent 18%);
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-crimson));
 }
 
 .page-hero {
