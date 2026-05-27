@@ -5,6 +5,7 @@ export const heroScenes = [
     copy: 'Only Telangana-listed whisky and beer, with beer MRPs loaded from a live rate page at runtime.',
     image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=80',
     bottle: '100 Pipers 12 Years',
+    bottleImage: '/bottles/hundred-pipers.png',
     note: 'Telangana MRP list',
   },
   {
@@ -13,6 +14,7 @@ export const heroScenes = [
     copy: 'Kingfisher, Budweiser, Bira, Hoegaarden, Corona and Heineken rates update from the live source.',
     image: 'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=1800&q=80',
     bottle: 'Kingfisher Light',
+    bottleImage: '/bottles/kingfisher-light.png',
     note: 'Live Telangana beer MRP',
   },
   {
@@ -21,6 +23,7 @@ export const heroScenes = [
     copy: 'The shop removes non-Telangana demo products and keeps the catalog focused on local availability.',
     image: 'https://images.unsplash.com/photo-1547595628-c61a29f496f0?auto=format&fit=crop&w=1800&q=80',
     bottle: '8 PM Classic Whisky',
+    bottleImage: '/bottles/eight-pm-classic.png',
     note: 'Budget to premium ladder',
   },
 ]

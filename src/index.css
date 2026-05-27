@@ -434,65 +434,36 @@ img {
 }
 
 .hero-bottle-wrap {
+  position: relative;
+  display: grid;
+  min-height: 660px;
+  place-items: center;
   perspective: 1200px;
 }
 
-.hero-bottle {
+.hero-bottle-image {
   position: relative;
-  margin: 0 auto;
-  width: min(330px, 70vw);
-  height: 590px;
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 36px 70px rgba(0, 0, 0, 0.75));
+  z-index: 2;
+  width: min(380px, 70vw);
+  max-height: min(690px, 76vh);
+  object-fit: contain;
+  filter:
+    drop-shadow(0 34px 42px rgba(0, 0, 0, 0.78))
+    drop-shadow(0 0 34px rgba(255, 225, 154, 0.14));
+  transform-origin: center bottom;
 }
 
-.bottle-neck {
+.hero-bottle-shadow {
   position: absolute;
-  top: 0;
+  z-index: 1;
+  bottom: 30px;
   left: 50%;
-  width: 74px;
-  height: 150px;
-  border: 1px solid rgba(232, 201, 122, 0.45);
-  background: linear-gradient(90deg, #070503, #2c1f0c, #070503);
+  width: min(360px, 60vw);
+  height: 48px;
+  border-radius: 999px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.62), transparent 68%);
+  filter: blur(6px);
   transform: translateX(-50%);
-}
-
-.bottle-body {
-  position: absolute;
-  inset: 135px 12px 0;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(232, 201, 122, 0.55);
-  border-radius: 44% 44% 18px 18px;
-  background:
-    radial-gradient(circle at 50% 22%, rgba(232, 201, 122, 0.36), transparent 9rem),
-    linear-gradient(90deg, #080503, #4c320d 35%, #110a04 72%, #050302);
-}
-
-.bottle-label {
-  display: grid;
-  width: min(210px, 70%);
-  min-height: 168px;
-  align-content: center;
-  gap: 12px;
-  border: 1px solid rgba(232, 201, 122, 0.45);
-  background: rgba(8, 6, 4, 0.2);
-  padding: 18px;
-  text-align: center;
-}
-
-.bottle-label strong {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(22px, 3vw, 34px);
-  line-height: 1.05;
-  color: #e8c97a;
-}
-
-.bottle-label em {
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 13px;
-  font-style: normal;
-  line-height: 1.25;
 }
 
 .section-pad {
@@ -1421,9 +1392,13 @@ img {
 }
 
 @media (max-width: 1023px) {
-  .hero-bottle {
-    height: 440px;
-    width: 260px;
+  .hero-bottle-wrap {
+    min-height: 460px;
+  }
+
+  .hero-bottle-image {
+    width: min(300px, 72vw);
+    max-height: 480px;
   }
 
   .cellar-theatre {

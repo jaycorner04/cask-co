@@ -75,28 +75,19 @@ export function HomePage() {
             </div>
           </div>
           <motion.div className="hero-bottle-wrap hero-stage" style={{ y }}>
-            <motion.div
-              className="hero-bottle"
-              animate={{ y: [-18, 18, -18], rotateY: [0, 10, 0], rotateZ: [-2, 2, -2] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <div className="bottle-neck" />
-              <div className="bottle-body">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    className="bottle-label"
-                    key={activeScene.bottle}
-                    initial={{ opacity: 0, y: 36, scale: 0.92 }}
-                    animate={{ opacity: 1, y: [18, -10, 0], scale: [0.94, 1.04, 1] }}
-                    exit={{ opacity: 0, y: -24, scale: 0.96 }}
-                    transition={{ duration: 0.7, ease: 'easeOut' }}
-                  >
-                    <strong>{activeScene.bottle}</strong>
-                    <em>{activeScene.note}</em>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </motion.div>
+            <AnimatePresence mode="wait">
+              <motion.img
+                className="hero-bottle-image"
+                key={activeScene.bottle}
+                src={activeScene.bottleImage}
+                alt={activeScene.bottle}
+                initial={{ opacity: 0, y: 84, scale: 0.82, rotateZ: -5 }}
+                animate={{ opacity: 1, y: [28, -24, 8, 0], scale: [0.9, 1.08, 0.99, 1], rotateZ: [-3, 2, -1, 0] }}
+                exit={{ opacity: 0, y: -56, scale: 0.9, rotateZ: 4 }}
+                transition={{ duration: 1.05, ease: 'easeOut' }}
+              />
+            </AnimatePresence>
+            <div className="hero-bottle-shadow" />
           </motion.div>
         </div>
         <StatsStrip />
