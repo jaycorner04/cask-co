@@ -82,17 +82,19 @@ export function HomePage() {
             >
               <div className="bottle-neck" />
               <div className="bottle-body">
-                <span>C&C</span>
-                <small>Private Reserve</small>
-              </div>
-            </motion.div>
-            <motion.div className="concierge-card" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}>
-              <p className="eyebrow">Now staging</p>
-              <h3>{activeScene.bottle}</h3>
-              <p>{activeScene.note}</p>
-              <div>
-                <span>ETA</span>
-                <strong>118 min</strong>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    className="bottle-label"
+                    key={activeScene.bottle}
+                    initial={{ opacity: 0, y: 36, scale: 0.92 }}
+                    animate={{ opacity: 1, y: [18, -10, 0], scale: [0.94, 1.04, 1] }}
+                    exit={{ opacity: 0, y: -24, scale: 0.96 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
+                    <strong>{activeScene.bottle}</strong>
+                    <em>{activeScene.note}</em>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </motion.div>
           </motion.div>
