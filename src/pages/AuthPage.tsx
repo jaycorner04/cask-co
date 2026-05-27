@@ -5,6 +5,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { bottleImages } from '../data/catalog'
 import { authSchema, type AuthForm } from '../schemas/forms'
+import { authenticate, DEMO_CREDENTIALS, saveCreatedUser, startSession } from '../services/auth'
 import { Input } from '../components/layout'
 
 export function AuthPage() {
@@ -19,6 +20,12 @@ export function AuthPage() {
     setMode(nextMode)
     setMessage('')
     form.clearErrors()
+  }
+
+  const fillDemoLogin = () => {
+    switchMode('signin')
+    form.setValue('email', DEMO_CREDENTIALS.email)
+    form.setValue('password', DEMO_CREDENTIALS.password)
   }
 
   const onSubmit = (values: AuthForm) => {
@@ -36,28 +43,22 @@ export function AuthPage() {
         return
       }
 
-      localStorage.setItem(
-        'cask-auth-user',
-        JSON.stringify({
-          name: values.name.trim(),
-          email: values.email,
-          phone: values.phone,
-          dob: values.dob,
-        }),
-      )
-      localStorage.setItem('cask-auth-session', 'true')
+      const user = saveCreatedUser(values)
+      startSession(user)
       setMessage('Account created. Opening your dashboard...')
       window.setTimeout(() => navigate('/dashboard'), 650)
       return
     }
 
-    const savedUser = localStorage.getItem('cask-auth-user')
-    if (!savedUser) {
-      setMessage('Signed in for this demo session. Create an account to save your details.')
-    } else {
-      setMessage('Signed in. Opening your dashboard...')
+    const user = authenticate(values.email, values.password)
+    if (!user) {
+      form.setError('password', { message: 'Use the demo password or your created account password' })
+      setMessage('Temporary login: user@caskco.com / Cask@1234')
+      return
     }
-    localStorage.setItem('cask-auth-session', 'true')
+
+    startSession(user)
+    setMessage('Signed in. Opening your dashboard...')
     window.setTimeout(() => navigate('/dashboard'), 650)
   }
 
@@ -77,6 +78,16 @@ export function AuthPage() {
               </button>
             ))}
           </div>
+          {mode === 'signin' && (
+            <div className="mb-5 border border-gold/15 bg-black/20 p-4 text-sm text-white/60">
+              <p className="font-serif text-xl text-gold">Temporary login</p>
+              <p className="mt-2">Email: <span className="text-white">{DEMO_CREDENTIALS.email}</span></p>
+              <p>Password: <span className="text-white">{DEMO_CREDENTIALS.password}</span></p>
+              <button className="btn-outline mt-4 w-full" type="button" onClick={fillDemoLogin}>
+                Use Demo Login
+              </button>
+            </div>
+          )}
           {mode === 'signup' && <Input label="Name" autoComplete="name" error={form.formState.errors.name?.message} {...form.register('name')} />}
           <Input label="Email" error={form.formState.errors.email?.message} {...form.register('email')} />
           <Input label="Password" type="password" autoComplete={mode === 'signin' ? 'current-password' : 'new-password'} error={form.formState.errors.password?.message} {...form.register('password')} />

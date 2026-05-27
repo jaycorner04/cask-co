@@ -1,8 +1,9 @@
 import { forwardRef, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronRight, LayoutDashboard, Menu, Minus, Plus, Search, ShoppingBag, User, X } from 'lucide-react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import useAppStore from '../../store/useAppStore'
+import { endSession, getCurrentUser } from '../../services/auth'
 import { formatPrice } from '../../utils/product'
 
 export function AgeGate() {
@@ -66,6 +67,9 @@ export function AgeGate() {
 export function Navbar() {
   const { cart, setCartOpen, mobileOpen, setMobileOpen } = useAppStore()
   const [solid, setSolid] = useState(false)
+  const pathname = useLocation().pathname
+  const navigate = useNavigate()
+  const user = getCurrentUser()
   const count = cart.reduce((sum, line) => sum + line.quantity, 0)
 
   useEffect(() => {
@@ -74,6 +78,12 @@ export function Navbar() {
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const signOut = () => {
+    endSession()
+    setMobileOpen(false)
+    navigate('/signin')
+  }
 
   const links = [
     ['Home', '/'],
@@ -84,7 +94,7 @@ export function Navbar() {
   ]
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition ${solid ? 'nav-solid' : 'bg-transparent'}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 transition ${solid ? 'nav-solid' : 'bg-transparent'}`} data-route={pathname}>
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-3">
           <span className="grid h-11 w-11 place-items-center border border-gold/40 bg-gold/10 font-serif text-sm text-gold">
@@ -107,12 +117,26 @@ export function Navbar() {
             <ShoppingBag size={18} />
             {count > 0 && <span className="cart-badge">{count}</span>}
           </IconButton>
-          <Link className="hidden lg:block" to="/signin">
-            <button className="btn-ghost">
-              <User size={16} />
-              Sign In
-            </button>
-          </Link>
+          {user ? (
+            <>
+              <Link className="hidden lg:block" to="/dashboard">
+                <button className="btn-ghost">
+                  <User size={16} />
+                  {user.name.split(' ')[0]}
+                </button>
+              </Link>
+              <button className="btn-ghost hidden lg:inline-flex" type="button" onClick={signOut}>
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <Link className="hidden lg:block" to="/signin">
+              <button className="btn-ghost">
+                <User size={16} />
+                Sign In
+              </button>
+            </Link>
+          )}
           <IconButton label="Menu" className="lg:hidden" onClick={() => setMobileOpen(true)}>
             <Menu size={20} />
           </IconButton>
@@ -143,6 +167,23 @@ export function Navbar() {
                 Admin
                 <LayoutDashboard size={18} />
               </NavLink>
+              {user ? (
+                <>
+                  <NavLink className="mobile-link" to="/dashboard" onClick={() => setMobileOpen(false)}>
+                    Dashboard
+                    <User size={18} />
+                  </NavLink>
+                  <button className="mobile-link" type="button" onClick={signOut}>
+                    Sign Out
+                    <X size={18} />
+                  </button>
+                </>
+              ) : (
+                <NavLink className="mobile-link" to="/signin" onClick={() => setMobileOpen(false)}>
+                  Sign In
+                  <User size={18} />
+                </NavLink>
+              )}
             </div>
           </motion.aside>
         )}
