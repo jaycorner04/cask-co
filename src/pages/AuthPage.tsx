@@ -45,8 +45,8 @@ export function AuthPage() {
 
       const user = saveCreatedUser(values)
       startSession(user)
-      setMessage('Account created. Opening your dashboard...')
-      window.setTimeout(() => navigate('/dashboard'), 650)
+      setMessage('Account created. Opening your homepage...')
+      window.setTimeout(() => navigate('/'), 650)
       return
     }
 
@@ -58,8 +58,8 @@ export function AuthPage() {
     }
 
     startSession(user)
-    setMessage('Signed in. Opening your dashboard...')
-    window.setTimeout(() => navigate('/dashboard'), 650)
+    setMessage('Signed in. Opening your homepage...')
+    window.setTimeout(() => navigate('/'), 650)
   }
 
   return (

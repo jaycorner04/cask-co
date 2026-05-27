@@ -11,7 +11,7 @@ export const DEMO_CREDENTIALS = {
   email: 'user@caskco.com',
   password: 'Cask@1234',
   user: {
-    name: 'CASK Demo User',
+    name: 'Demo User',
     email: 'user@caskco.com',
     phone: '9876543210',
     dob: '1998-01-01',

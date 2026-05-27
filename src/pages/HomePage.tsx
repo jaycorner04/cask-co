@@ -7,6 +7,7 @@ import { cellarMoments, citySignals, heroScenes, tickerItems } from '../data/hom
 import { homepageLivCheersCategories, useLiveCatalog } from '../hooks/useLiveCatalog'
 import { Section, SkeletonGrid } from '../components/layout'
 import { ProductGrid, ShopProductList } from '../components/products'
+import { getCurrentUser } from '../services/auth'
 import { formatPrice } from '../utils/product'
 
 export function HomePage() {
@@ -15,6 +16,7 @@ export function HomePage() {
   const [sceneIndex, setSceneIndex] = useState(0)
   const activeScene = heroScenes[sceneIndex]
   const words = activeScene.title.split(' ')
+  const user = getCurrentUser()
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -101,6 +103,7 @@ export function HomePage() {
         </motion.div>
       </section>
       <LuxuryTicker />
+      {user && <SignedInHomePanel name={user.name} email={user.email} />}
       <CategoryShowcase />
       <LivCheersHomeShelf />
       <FeaturedProducts />
@@ -108,6 +111,24 @@ export function HomePage() {
       <CityServiceGrid />
       <ExperienceBand />
     </>
+  )
+}
+
+function SignedInHomePanel({ name, email }: { name: string; email: string }) {
+  return (
+    <section className="border-b border-gold/15 bg-black/20 px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p className="eyebrow">Signed in</p>
+          <h2 className="mt-2 font-serif text-3xl text-gold">Welcome back, {name}</h2>
+          <p className="mt-1 text-sm text-white/50">{email}</p>
+        </div>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Link to="/dashboard"><button className="btn-primary">Open Dashboard</button></Link>
+          <Link to="/shop"><button className="btn-outline">Continue Shopping</button></Link>
+        </div>
+      </div>
+    </section>
   )
 }
 

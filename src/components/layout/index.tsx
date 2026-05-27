@@ -122,7 +122,7 @@ export function Navbar() {
               <Link className="hidden lg:block" to="/dashboard">
                 <button className="btn-ghost">
                   <User size={16} />
-                  {user.name.split(' ')[0]}
+                  <span className="max-w-36 truncate">{user.name}</span>
                 </button>
               </Link>
               <button className="btn-ghost hidden lg:inline-flex" type="button" onClick={signOut}>
