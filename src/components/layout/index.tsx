@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronRight, LayoutDashboard, Menu, Minus, Plus, Search, ShoppingBag, User, X } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
@@ -280,15 +280,17 @@ export function SkeletonGrid() {
   return <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{Array.from({ length: 4 }).map((_, index) => <div className="skeleton h-[460px]" key={index} />)}</div>
 }
 
-export function Input({ label, error, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }) {
-  return (
-    <label className="grid gap-2 text-sm text-white/50">
-      {label}
-      <input className="field" {...props} />
-      {error && <span className="text-red-300">{error}</span>}
-    </label>
-  )
-}
+export const Input = forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }>(
+  function Input({ label, error, ...props }, ref) {
+    return (
+      <label className="grid gap-2 text-sm text-white/50">
+        {label}
+        <input className="field" ref={ref} {...props} />
+        {error && <span className="text-red-300">{error}</span>}
+      </label>
+    )
+  },
+)
 
 export function OrderSummary({ total }: { total: number }) {
   return (

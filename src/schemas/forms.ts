@@ -8,9 +8,12 @@ export const checkoutSchema = z.object({
 })
 
 export const authSchema = z.object({
+  name: z.string().optional(),
   email: z.string().email('Use a valid email'),
   password: z.string().min(8, 'Minimum 8 characters'),
-  ageConfirm: z.boolean().refine(Boolean, 'Age confirmation is required'),
+  phone: z.string().optional(),
+  dob: z.string().optional(),
+  ageConfirm: z.boolean().optional(),
 })
 
 export type CheckoutForm = z.infer<typeof checkoutSchema>
